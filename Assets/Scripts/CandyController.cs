@@ -67,6 +67,7 @@ public class CandyController : MonoBehaviour
                     previousSelected.FindAllMatches();
                     previousSelected.DeselectCandy();
                     FindAllMatches();
+                    GUIManager.sharedInstance.MovesCounter--;
                 }
                 else
                 {

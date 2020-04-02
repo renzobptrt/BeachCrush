@@ -102,7 +102,7 @@ public class BoardManager : MonoBehaviour
 
     }
 
-    public IEnumerator MakeCandiesFall(int x, int yStart, float shiftDelay = 0.25f)
+    public IEnumerator MakeCandiesFall(int x, int yStart, float shiftDelay = 0.05f)
     {
         isShifting = true;
 
@@ -121,6 +121,7 @@ public class BoardManager : MonoBehaviour
 
         for (int i = 0; i < nullCandies; i++)
         {
+            GUIManager.sharedInstance.Score += 10;
             yield return new WaitForSeconds(shiftDelay);
             for (int j = 0; j < renderes.Count - 1; j++)
             {
@@ -149,16 +150,5 @@ public class BoardManager : MonoBehaviour
             posibleCandies.Remove(candies[x, y - 1].GetComponent<SpriteRenderer>().sprite);
         }
         return posibleCandies[Random.Range(0, posibleCandies.Count)];
-    }
-
-    private int GetId(Sprite candy)
-    {
-        int id = 0;
-        for (int i = 0; i < candyPrefabs.Count; i++)
-        {
-            if (candy == candyPrefabs[i])
-                id = i;
-        }
-        return id;
     }
 }
